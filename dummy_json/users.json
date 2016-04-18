@@ -5,10 +5,10 @@
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
     "email": "roy.segall@gizra.com",
     "current game": "56",
-    "records": [
+    "records": {
       "55": "90",
       "54": "105"
-    ],
+    },
     "admin": "true"
   },
   {
@@ -17,10 +17,10 @@
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
     "email": "nir.galon@gizra.com",
     "current game": "56",
-    "records": [
+    "records": {
       "54": "80",
       "53": "65"
-    ],
+    },
     "admin": "true"
   },
   {
@@ -29,10 +29,10 @@
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
     "email": "israel.israeli@gizra.com",
     "current game": "57",
-    "records": [
+    "records": {
       "53": "30",
       "52": "110",
-    ],
+    },
     "admin": "false"
   },
 }
