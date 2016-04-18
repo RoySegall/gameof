@@ -1,18 +1,44 @@
 {
-  "gizra": {
-    "id": "gizra",
-    "title": "Game of Gizra",
-    "owner": 1,
-    "winner": 3,
-    "points": 100,
-    "users_counter": 20
+  "0": {
+    "id": "0",
+    "game_id": "gizra",
+    "title": "what was the name of employee previous to Roy?",
+    "points": 2,
+    "correct_answer": "noam",
+    "duration": 15,
+    "answers": [
+      {"noam": "Noam"},
+      {"alex": "Alex"},
+      {"roy_s": "Roy Shell"},
+      {"liat": "Liat"}
+    ]
   },
-  "hasadna": {
-    "id": "hasadna",
-    "title": "Hasadna",
-    "owner": 4,
-    "winner": 1,
-    "points": 30,
-    "users_counter": 5
+  "1": {
+    "id": "1",
+    "game_id": "gizra",
+    "title": "When the company founded",
+    "points": 1,
+    "correct_answer": "2009",
+    "duration": 10,
+    "answers": [
+      {"2009": "2009"},
+      {"2010": "2010"},
+      {"2008": "2008"},
+      {"2006": "2006"}
+    ]
+  },
+  "2": {
+    "id": "2",
+    "game_id": "gizra",
+    "title": "What is the type if the contract Gizra using?",
+    "points": 3,
+    "correct_answer": "iso_9000",
+    "duration": 15,
+    "answers": [
+      {"iso_9000": "ISO 9000"},
+      {"iso_6020": "ISO 6020"},
+      {"none": "There is no"},
+      {"iso_9001": "ISO 9001"}
+    ]
   }
 }
