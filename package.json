@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "colors": "^1.1.2",
+    "gulp-util": "^3.0.7",
     "semantic-ui": "^2.1.8"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.1"
+    "gulp-sass": "^2.3.1",
+    "gulp-util": "^3.0.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
