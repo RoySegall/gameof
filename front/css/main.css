@@ -25,3 +25,5 @@ i.icon, i.icons {
     .wrapper.game .answers {
       padding-top: 4rem;
       padding-bottom: 2rem; }
+      .wrapper.game .answers button {
+        width: 100%; }
