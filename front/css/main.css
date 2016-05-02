@@ -1,0 +1,27 @@
+body {
+  background: #fff; }
+
+i.icon, i.icons {
+  font-size: 1.5em; }
+
+.wrapper {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  text-align: center;
+  padding: 10px; }
+  .wrapper.main {
+    border: #6fca2c solid 1px; }
+    .wrapper.main .form {
+      padding: 1rem; }
+  .wrapper.games {
+    border: #FFCE45 solid 1px; }
+  .wrapper.game {
+    border: #45A9FF solid 1px;
+    width: 90%;
+    left: 5%;
+    top: 15%; }
+    .wrapper.game .answers {
+      padding-top: 4rem;
+      padding-bottom: 2rem; }
