@@ -1,5 +1,5 @@
 {
-  {
+  "0": {
     "id": "1",
     "name": "roy segall",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
@@ -11,7 +11,7 @@
     },
     "admin": "true"
   },
-  {
+  "1": {
     "id": "2",
     "name": "nir galon",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
@@ -23,7 +23,7 @@
     },
     "admin": "true"
   },
-  {
+  "2": {
     "id": "3",
     "name": "Israel Israeli",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
@@ -34,5 +34,5 @@
       "52": "110",
     },
     "admin": "false"
-  },
+  }
 }
