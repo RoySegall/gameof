@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
 require('colors');
+var ghPages = require('gulp-gh-pages');
 
 gulp.task('styles', function() {
   gulp.src('front/sass/**/*.scss')
@@ -22,4 +23,9 @@ gulp.task('add-question', function() {
 //Watch task
 gulp.task('default',function() {
   gulp.watch('front/sass/**/*.scss',['front/styles']);
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./front/**/*')
+    .pipe(ghPages());
 });
