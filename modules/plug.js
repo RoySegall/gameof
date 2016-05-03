@@ -26,7 +26,6 @@ var getListPlugins = function(modules) {
  */
 var getPluginInfo = function(file) {
   // return an object wih the path info and the methods.
-
 };
 
 module.exports = {

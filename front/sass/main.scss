@@ -1,5 +1,6 @@
 body {
   background: #fff;
+  padding-top: 5rem;
 }
 
 i.icon, i.icons {
@@ -7,18 +8,22 @@ i.icon, i.icons {
 }
 
 .wrapper {
-  position: fixed;
   top: 25%;
   left: 25%;
   width: 50%;
   text-align: center;
   padding: 10px;
+  margin: 0 auto;
 
   &.main {
     border: #6fca2c solid 1px;
 
     .form {
       padding: 1rem;
+    }
+
+    a {
+      color: #45A9FF;
     }
   }
 
@@ -31,6 +36,7 @@ i.icon, i.icons {
     width: 90%;
     left: 5%;
     top: 15%;
+    max-width: 1150px;
 
     .answers {
       padding-top: 4rem;
