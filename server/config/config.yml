@@ -1,4 +1,5 @@
-port: 29015
-host: localhost
+port: 28015
+host: 'localhost'
+db: gameof
 pass:
 user:

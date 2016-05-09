@@ -11,13 +11,23 @@ gulp.task('styles', function() {
 });
 
 gulp.task('migration', function() {
-});
+  var gameOf = require('./modules/modules');
+  var db = gameOf.db;
 
-gulp.task('reinstall-db', function() {
-});
+  gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
+  db.invokeCallback(db.tableCreate.bind(null, 'test'));
 
-gulp.task('add-question', function() {
 
+
+  gutil.log('Hi there! migration is starting'.rainbow);
+
+  gutil.log('Start by creating tables'.yellow);
+  gutil.log('Tables are injected. Cool!'.green);
+
+  gutil.log('Importing the data'.yellow);
+  gutil.log('All the data is in. Cool!'.green);
+
+  gutil.log('We have the data in.'.rainbow);
 });
 
 //Watch task
