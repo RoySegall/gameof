@@ -13,15 +13,23 @@ gulp.task('styles', function() {
 gulp.task('migration', function() {
   var gameOf = require('./modules/modules');
   var db = gameOf.db;
+  var fs = require('fs');
+  var path = require('path');
 
   gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
-  db.invokeCallback(db.tableCreate.bind(null, 'test'));
-
-
 
   gutil.log('Hi there! migration is starting'.rainbow);
 
   gutil.log('Start by creating tables'.yellow);
+
+  // Iterate over the files.
+  fs.readdir(__dirname + '/dummy_json', function(err, files) {
+
+    files.forEach(function(element, index) {
+      db.invokeCallback(db.tableCreate.bind(null, path.basename(element, '.json')));
+    });
+  });
+
   gutil.log('Tables are injected. Cool!'.green);
 
   gutil.log('Importing the data'.yellow);
