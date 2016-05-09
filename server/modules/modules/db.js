@@ -13,18 +13,17 @@ module.exports = {
   /**
    * Create a table.
    */
-  tableCreate: function(table, done, err, connection) {
+  tableCreate: function(table, err, connection) {
     var db = r.db(yml.parse().db);
 
-    db.tableCreate(table).run(connection, function(err, result, next) {
+    return db.tableCreate(table).run(connection, function(err, result) {
 
       if (err) {
         throw err;
       }
 
-      console.log(JSON.stringify(result, null, 2));
-
-      // how to do the next task?
+      // Close the connection.
+      connection.close();
     });
   }
 
