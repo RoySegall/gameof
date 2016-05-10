@@ -7,6 +7,7 @@ var fs = require('fs');
 var gameOf = require('./modules/modules');
 var db = gameOf.db;
 var path = require('path');
+var util = require('util');
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
 gulp.task('styles', function() {
@@ -15,10 +16,8 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./front/css/'))
 });
 
-gulp.task('create_tables', function() {
-  gutil.log('Hi there! migration is starting'.rainbow);
-
-  gutil.log('Start by creating tables'.yellow);
+gulp.task('migrate:tables', function() {
+  gutil.log('Start to create tables'.rainbow);
 
   // Iterate over the files.
   fs.readdir(__dirname + '/dummy_json', function(err, files) {
@@ -29,8 +28,7 @@ gulp.task('create_tables', function() {
 
       // Create table.
       db.invokeCallback(db.tableCreate.bind(null, table)).then(function() {
-        var string = 'The table ' + table + ' are injected. Cool!';
-        gutil.log(string.green);
+        gutil.log(util.format('The table %s has created. Cool!', table).green);
       });
 
       return true;
@@ -38,7 +36,8 @@ gulp.task('create_tables', function() {
   });
 });
 
-gulp.task('migrate_content', function() {
+gulp.task('migrate:content', function() {
+  gutil.log('Start to migrate content'.rainbow);
 
   fs.readdir(__dirname + '/dummy_json', function(err, files) {
 
@@ -51,20 +50,17 @@ gulp.task('migrate_content', function() {
 
         var table = path.basename(element, '.json');
 
-        var string = 'Importing the data for ' + table;
-        gutil.log(string.yellow);
+        gutil.log(util.format('Importing the data for %s', table).yellow);
 
         var json_content = JSON.parse(data);
 
         for (var key in json_content) {
           if (json_content.hasOwnProperty(key)) {
-            var jsonContent = json_content[key];
-            db.invokeCallback(db.insert.bind(null, table, jsonContent));
+            db.invokeCallback(db.insert.bind(null, table, json_content[key]));
           }
         }
 
-        string = 'The data for ' + table + ' is in.';
-        gutil.log(string.green);
+        gutil.log(util.format('The data for %s is in.', table).green);
       });
 
       return true;
