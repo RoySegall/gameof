@@ -7,7 +7,7 @@ var fs = require('fs');
 var gameOf = require('./modules/modules');
 var db = gameOf.db;
 var path = require('path');
-var _ = require('underscore');
+gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
 gulp.task('styles', function() {
   gulp.src('front/sass/**/*.scss')
@@ -16,8 +16,6 @@ gulp.task('styles', function() {
 });
 
 gulp.task('create_tables', function() {
-  gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
-
   gutil.log('Hi there! migration is starting'.rainbow);
 
   gutil.log('Start by creating tables'.yellow);
@@ -40,7 +38,7 @@ gulp.task('create_tables', function() {
   });
 });
 
-gulp.task('migrate', function() {
+gulp.task('migrate_content', function() {
 
   fs.readdir(__dirname + '/dummy_json', function(err, files) {
 
@@ -60,14 +58,16 @@ gulp.task('migrate', function() {
 
         for (var key in json_content) {
           if (json_content.hasOwnProperty(key)) {
-
-            db.invokeCallback(db.insert.bind(null, table, json_content[key])).then(function() {
-              var string = 'All the data for ' + table + ' is in. Cool!';
-              gutil.log(string.green);
-            });
+            var jsonContent = json_content[key];
+            db.invokeCallback(db.insert.bind(null, table, jsonContent));
           }
         }
+
+        string = 'The data for ' + table + ' is in.';
+        gutil.log(string.green);
       });
+
+      return true;
     });
   });
 });
