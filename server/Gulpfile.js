@@ -1,8 +1,13 @@
+require('colors');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
-require('colors');
 var ghPages = require('gulp-gh-pages');
+var fs = require('fs');
+var gameOf = require('./modules/modules');
+var db = gameOf.db;
+var path = require('path');
+var _ = require('underscore');
 
 gulp.task('styles', function() {
   gulp.src('front/sass/**/*.scss')
@@ -10,14 +15,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./front/css/'))
 });
 
-gulp.task('migration', function() {
-  var gameOf = require('./modules/modules');
-  var db = gameOf.db;
-  var fs = require('fs');
-  var path = require('path');
-  var _ = require('underscore');
-
-
+gulp.task('create_tables', function() {
   gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
   gutil.log('Hi there! migration is starting'.rainbow);
@@ -27,26 +25,49 @@ gulp.task('migration', function() {
   // Iterate over the files.
   fs.readdir(__dirname + '/dummy_json', function(err, files) {
 
-    files.forEach(function(element, index) {
+    files.every(function(element, index) {
 
-      var file_content = fs.readFileSync(__dirname + '/dummy_json/' + element, 'utf8');
-      var json_content = JSON.parse(JSON.stringify(file_content));
+      var table = path.basename(element, '.json');
 
-      json_content.forEach(function(element) {
-        console.log(element);
-      });
-      return;
       // Create table.
-      // db.invokeCallback(db.tableCreate.bind(null, path.basename(element, '.json')))
-      //   .then(function() {
-      //
-      //     gutil.log('Tables are injected. Cool!'.green);
-      //
-      //     gutil.log('Importing the data'.yellow);
-      //     gutil.log('All the data is in. Cool!'.green);
-      //
-      //     gutil.log('We have the data in.'.rainbow);
-      //   });
+      db.invokeCallback(db.tableCreate.bind(null, table)).then(function() {
+        var string = 'The table ' + table + ' are injected. Cool!';
+        gutil.log(string.green);
+      });
+
+      return true;
+    });
+  });
+});
+
+gulp.task('migrate', function() {
+
+  fs.readdir(__dirname + '/dummy_json', function(err, files) {
+
+    files.every(function (element, index) {
+
+      fs.readFile(__dirname + '/dummy_json/' + element, 'utf8', function (err, data) {
+        if (err) {
+          throw err;
+        }
+
+        var table = path.basename(element, '.json');
+
+        var string = 'Importing the data for ' + table;
+        gutil.log(string.yellow);
+
+        var json_content = JSON.parse(data);
+
+        for (var key in json_content) {
+          if (json_content.hasOwnProperty(key)) {
+
+            db.invokeCallback(db.insert.bind(null, table, json_content[key])).then(function() {
+              var string = 'All the data for ' + table + ' is in. Cool!';
+              gutil.log(string.green);
+            });
+          }
+        }
+      });
     });
   });
 });

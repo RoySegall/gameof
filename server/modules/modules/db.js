@@ -25,6 +25,17 @@ module.exports = {
       // Close the connection.
       connection.close();
     });
+  },
+
+  /**
+   * Inserting data into a table.
+   */
+  insert: function(table, data, err, connection) {
+    var db = r.db(yml.parse().db);
+
+    return db.table(table).insert(data).run(connection, function() {
+      connection.close();
+    });
   }
 
 };
