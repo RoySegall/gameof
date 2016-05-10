@@ -15,7 +15,8 @@ gulp.task('migration', function() {
   var db = gameOf.db;
   var fs = require('fs');
   var path = require('path');
-  var async = require('async');
+  var _ = require('underscore');
+
 
   gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
@@ -27,17 +28,25 @@ gulp.task('migration', function() {
   fs.readdir(__dirname + '/dummy_json', function(err, files) {
 
     files.forEach(function(element, index) {
+
+      var file_content = fs.readFileSync(__dirname + '/dummy_json/' + element, 'utf8');
+      var json_content = JSON.parse(JSON.stringify(file_content));
+
+      json_content.forEach(function(element) {
+        console.log(element);
+      });
+      return;
       // Create table.
-      db.invokeCallback(db.tableCreate.bind(null, path.basename(element, '.json')))
-        .then(function() {
-
-          gutil.log('Tables are injected. Cool!'.green);
-
-          gutil.log('Importing the data'.yellow);
-          gutil.log('All the data is in. Cool!'.green);
-
-          gutil.log('We have the data in.'.rainbow);
-        });
+      // db.invokeCallback(db.tableCreate.bind(null, path.basename(element, '.json')))
+      //   .then(function() {
+      //
+      //     gutil.log('Tables are injected. Cool!'.green);
+      //
+      //     gutil.log('Importing the data'.yellow);
+      //     gutil.log('All the data is in. Cool!'.green);
+      //
+      //     gutil.log('We have the data in.'.rainbow);
+      //   });
     });
   });
 });
