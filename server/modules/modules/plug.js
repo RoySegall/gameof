@@ -25,16 +25,9 @@ module.exports = {
       files.every(function(file) {
 
         annotation(plugins_path + '/' + file, function(AnnotationReader) {
-          //get annotations related to the class
-          console.log(AnnotationReader.getClassAnnotations());
-
-          ////get annotations related to the method test
-          //console.log(AnnotationReader.getMethodAnnotations('test'));
-          //
-          ////get annotations related to the property test
-          //console.log(AnnotationReader.getPropertyAnnotations('test'));
+          // todo build an array from the annotation info.
+          var annotations = AnnotationReader.getClassAnnotations();
         });
-
 
         return true;
       });
