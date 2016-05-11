@@ -13,5 +13,6 @@ before_script:
 script:
   - cd server
   - npm install
+  - gulp migrate:database
   - gulp migrate:tables
   - gulp migrate:content
