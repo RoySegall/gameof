@@ -16,6 +16,13 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./front/css/'))
 });
 
+gulp.task('migrate:database', function() {
+  gutil.log('Create the DB first!'.yellow);
+  db.invokeCallback(db.dbCreate).then(function() {
+    gutil.log('The DB has created'.green);
+  });
+});
+
 gulp.task('migrate:tables', function() {
   gutil.log('Start to create tables'.rainbow);
 

@@ -4,6 +4,15 @@ var yml = require('./yml'),
 module.exports = {
 
   /**
+   * Creating a DB as defined in the YML file.
+   */
+  dbCreate: function(err, connection) {
+    return r.dbCreate(yml.parse().db).run(connection, function() {
+      connection.close();
+    });
+  },
+
+  /**
    * Establish connection for the DB.
    */
   invokeCallback: function(callback) {
