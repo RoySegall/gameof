@@ -29,7 +29,12 @@ module.exports = {
    * @param info
    */
   setPluginsInfo: function(info) {
-    this.pluginsInfo = info;
+    if (this.pluginsInfo != undefined) {
+      this.pluginsInfo = _.extend(this.pluginsInfo, info);
+    }
+    else {
+      this.pluginsInfo = info;
+    }
   },
 
   /**

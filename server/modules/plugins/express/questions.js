@@ -2,6 +2,7 @@
  * @id question
  * @path /api/questions
  * @allowedMethods get, post
+ * @validate true
  */
 function plugin() {
 

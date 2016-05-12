@@ -4,5 +4,6 @@ var gameOf = require('./modules/modules');
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 gameOf.plug.setPluginsPath(__dirname + '/modules/plugins');
 
-// Run over all the plugins and get the information.
+// Set up the plugins info.
 gameOf.plug.setPlugins('express');
+gameOf.plug.setPlugins('validation');
