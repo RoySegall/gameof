@@ -13,14 +13,6 @@ module.exports = {
     return this.plguinsPath;
   },
 
-  bar: function(key, value) {
-    this.test[key] = value;
-  },
-
-  bar1: function() {
-    return this.test;
-  },
-
   /**
    * Get all the plugins.
    *
@@ -29,10 +21,10 @@ module.exports = {
   getPlugins: function(type) {
 
     var plugins_path = path.resolve(this.getPluginsPath(), type);
+    var plugins_info = [];
     return fs.readdir(plugins_path, function(err, files) {
 
-      var plugins_info = [];
-      files.every(function(file) {
+      return files.every(function(file) {
 
         annotation(plugins_path + '/' + file, function(AnnotationReader) {
           var plugin_annotations = AnnotationReader.getClassAnnotations();
@@ -49,9 +41,6 @@ module.exports = {
             return true;
           });
 
-          this.bar();
-
-
         });
 
         return true;
@@ -59,7 +48,6 @@ module.exports = {
 
     });
   },
-
 
   /**
    * Get a specific plugin.
