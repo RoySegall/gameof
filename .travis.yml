@@ -19,7 +19,7 @@ script:
   - mocha
 
   # Go back to the previous page.
-  cd ../
+  - cd ../
 
   # Testing migrate content.
   - npm install
