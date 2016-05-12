@@ -2,12 +2,8 @@
  * @Class();
  * @id("games");
  * @path("/api/questions");
- * @handlers(
- *  {
- *    "get": "restGet",
- *    "post": "restPost"
- *  }
- * );
+ * @get("restGet");
+ * @post("restPost");
  */
 module.exports = {
 

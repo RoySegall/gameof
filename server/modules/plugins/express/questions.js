@@ -2,12 +2,8 @@
  * @Class();
  * @id("questions");
  * @path("/api/questions");
- * @handlers(
- *  {
- *    "get": "restGet",
- *    "post": "restPost"
- *  }
- * );
+ * @get("restGet");
+ * @post("restPost");
  */
 module.exports = {
 
@@ -16,10 +12,6 @@ module.exports = {
 
   },
 
-  /**
-   * @Method("test");
-   * @testing("test");
-   */
   restPost: function() {
 
   }
