@@ -4,9 +4,9 @@
   "description": "",
   "main": "server/app.js",
   "dependencies": {
-    "annotation": "^0.1.0",
     "annotations": "^0.1.338",
     "colors": "^1.1.2",
+    "conga-annotations": "^0.1.8",
     "express": "^4.13.4",
     "fs": "0.0.2",
     "gulp-util": "^3.0.7",
