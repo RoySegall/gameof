@@ -1,19 +1,20 @@
 /**
- *
- * @annotation annotation for anonymous function export
- * @load:user parameter:id
- * @access group:root
- * @emptyannotation
- * @anotheremptyannotation
+ * @id games
+ * @path /api/games
+ * @allowedMethods get, post, patch
  */
-module.exports = {
+function plugin() {
 
-  restGet: function() {
+  return {
 
-  },
+    restGet: function () {
+      console.log('I am a games list');
+    },
 
-  restPost: function() {
+    postGet: function() {
 
-  }
+    }
+  };
+}
 
-};
+module.exports = plugin();

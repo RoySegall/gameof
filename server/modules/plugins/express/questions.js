@@ -1,20 +1,20 @@
 /**
- *
- * @annotation annotation for anonymous function export
- * @load:user parameter:id
- * @access group:root
- * @emptyannotation
- * @anotheremptyannotation
+ * @id question
+ * @path /api/questions
+ * @allowedMethods get, post
  */
-module.exports = {
+function plugin() {
 
+  return {
 
-  restGet: function() {
+    restGet: function () {
+      console.log('I am a questions list');
+    },
 
-  },
+    postGet: function() {
 
-  restPost: function() {
+    }
+  };
+}
 
-  }
-
-};
+module.exports = plugin();
