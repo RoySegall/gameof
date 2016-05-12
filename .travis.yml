@@ -4,6 +4,7 @@ node_js: 5.10.0
 
 before_script:
   - npm install -g gulp
+  - npm install -g mocha
   - source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
   - wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
   - sudo apt-get update
@@ -11,7 +12,16 @@ before_script:
   - rethinkdb > /dev/null &
 
 script:
-  - cd server
+
+  # Unit testing.
+  - cd server/testing
+  - npm install
+  - mocha
+
+  # Go back to the previous page.
+  cd ../
+
+  # Testing migrate content.
   - npm install
   - gulp migrate:database
   - gulp migrate:tables
