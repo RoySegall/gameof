@@ -13,16 +13,14 @@ before_script:
 
 script:
 
-  # Unit testing.
-  - cd server/testing
-  - npm install
-  - mocha
-
-  # Go back to the previous page.
-  - cd ../
-
   # Testing migrate content.
+  - cd server
   - npm install
   - gulp migrate:database
   - gulp migrate:tables
   - gulp migrate:content
+
+  # Unit testing
+  - cd testing
+  - npm install
+  - mocha
