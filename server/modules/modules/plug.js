@@ -7,8 +7,11 @@ var
 module.exports = {
 
   /**
-   * Set the path of the plugins path. Should be invoked when bootstraping.
+   * Set the path of the plugins path. Should be invoked when bootstrapping.
+   *
    * @param path
+   *   The path of the base folder for the plugins in which plugins type will
+   *   be set in sub-directories.
    */
   setPluginsPath: function(path) {
     this.plguinsPath = path;
@@ -27,6 +30,7 @@ module.exports = {
    * Set the plugins info. this will used for a small caching.
    *
    * @param info
+   *   The information of the plugins.
    */
   setPluginsInfo: function(info) {
     if (this.pluginsInfo != undefined) {
@@ -74,6 +78,8 @@ module.exports = {
    * Set up plugins information.
    *
    * @param type
+   *   The type of the plugins. Will be the name of the folder in which the
+   *   plugins is located.
    */
   setPlugins: function(type) {
 
