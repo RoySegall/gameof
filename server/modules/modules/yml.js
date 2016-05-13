@@ -13,4 +13,5 @@ module.exports = {
   parse: function() {
     return yml.load(this.getYmlPath());
   }
+
 };
