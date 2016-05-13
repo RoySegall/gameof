@@ -38,15 +38,6 @@ module.exports = {
   },
 
   /**
-   * Return all the plugins info.
-   *
-   * @returns {*}
-   */
-  getPluginsInfo: function() {
-    return this.pluginsInfo;
-  },
-
-  /**
    * Get the plugin information.
    *
    * @param plugin
@@ -56,6 +47,15 @@ module.exports = {
    */
   getPluginInfo: function(plugin) {
     return this.pluginsInfo[plugin];
+  },
+
+  /**
+   * Return all the plugins info.
+   *
+   * @returns {*}
+   */
+  getPlugins: function() {
+    return this.pluginsInfo;
   },
 
   /**
