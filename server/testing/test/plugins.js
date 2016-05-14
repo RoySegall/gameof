@@ -23,3 +23,11 @@ describe('Testing the plugin frameworks', function () {
   });
 
 });
+
+describe('Testing the validation plugins', function() {
+
+  it('Testing object validation', function() {
+    assert.equal(1, 2);
+  });
+
+});
