@@ -2,3 +2,4 @@ node_modules
 semantic
 .idea
 server/rethinkdb_data
+elm-stuff
