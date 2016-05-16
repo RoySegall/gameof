@@ -1,8 +1,14 @@
 module.exports = {
-  users: require('./modules/users'),
+
+  // Core modules.
   yml: require('./modules/yml'),
   db: require('./modules/db'),
+  plug: require('./modules/plug'),
+
+  // Data related modules.
   games: {},
+  users: require('./modules/users'),
   question: {},
-  plug: require('./modules/plug')
+  stats: {},
+  rtm: {}
 };

@@ -1,8 +1,9 @@
 var
   path = require('../../node_modules/path'),
   fs = require('fs'),
-  annotations = require('../../node_modules/annotations');
-  _ = require('../../node_modules/underscore');
+  annotations = require('../../node_modules/annotations'),
+  _ = require('../../node_modules/underscore'),
+  Joi = require('../../node_modules/joi');
 
 module.exports = {
 
@@ -71,7 +72,27 @@ module.exports = {
    * @returns {*}
    */
   getPlugin: function(plugin) {
-    return require(this.getPluginInfo(plugin).path);
+
+    var instance = require(this.getPluginInfo(plugin).path);
+
+    if (plugin.indexOf('_validation') != -1) {
+      instance.validate = function(schema) {
+        var template = instance.template();
+
+        return Joi.validate(schema, template, {'abortEarly': false}, function (err, value) {
+
+          if (err == null) {
+            return null;
+          }
+
+          return _.object(_.map(err.details, function(message) {
+            return [message.path, message.message];
+          }));
+        });
+      };
+    }
+
+    return instance;
   },
 
   /**
