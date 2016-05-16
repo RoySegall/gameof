@@ -81,6 +81,10 @@ module.exports = {
 
         return Joi.validate(schema, template, {'abortEarly': false}, function (err, value) {
 
+          if (err == null) {
+            return null;
+          }
+
           return _.object(_.map(err.details, function(message) {
             return [message.path, message.message];
           }));
