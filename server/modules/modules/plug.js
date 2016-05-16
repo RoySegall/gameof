@@ -30,12 +30,10 @@ module.exports = {
   /**
    * Set the plugins info. this will used for a small caching.
    *
-   * @param type
-   *   The type of the plugins: validation, express etc. etc.
    * @param info
    *   The information of the plugins.
    */
-  setPluginsInfo: function(type, info) {
+  setPluginsInfo: function(info) {
     if (this.pluginsInfo != undefined) {
       this.pluginsInfo = _.extend(this.pluginsInfo, info);
     }
@@ -121,7 +119,7 @@ module.exports = {
     }));
 
     // Sort of a low level cache.
-    this.setPluginsInfo(type, plugins);
+    this.setPluginsInfo(plugins);
 
     return plugins;
   },
