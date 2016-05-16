@@ -7,8 +7,8 @@ function plugin() {
 
   return {
 
-    restGet: function () {
-      console.log('I am a games list');
+    restGet: function(req, res) {
+      res.send('Get a random games');
     },
 
     postGet: function() {

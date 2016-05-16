@@ -8,8 +8,8 @@ function plugin() {
 
   return {
 
-    restGet: function () {
-      console.log('I am a questions list');
+    restGet: function(req, res) {
+      res.send('Get a random question');
     },
 
     postGet: function() {

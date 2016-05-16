@@ -73,7 +73,7 @@ module.exports = {
    */
   getPlugin: function(plugin) {
 
-    var instance = require(this.getPluginInfo(plugin).path);
+    var instance = require(this.getPluginInfo(plugin).plugin_path);
 
     if (plugin.indexOf('_validation') != -1) {
       instance.validate = function(schema) {
@@ -113,7 +113,7 @@ module.exports = {
       var annotations_info = annotations.getSync(plugins_path + '/' + item).plugin;
 
       // Save the plugin path. Used when instantiate a plugin.
-      annotations_info.path = plugins_path + '/' + item;
+      annotations_info.plugin_path = plugins_path + '/' + item;
 
       return [annotations_info.id, annotations_info];
     }));
