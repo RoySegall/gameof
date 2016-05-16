@@ -2,6 +2,9 @@
  * @id games
  * @path /api/games
  * @allowedMethods get, post, patch
+ *
+ * @get restGet
+ * @post postGet
  */
 function plugin() {
 
@@ -11,8 +14,8 @@ function plugin() {
       res.send('Get a random games');
     },
 
-    postGet: function() {
-
+    postGet: function(req, res) {
+      res.send('posting a games')
     }
   };
 }

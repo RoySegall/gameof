@@ -1,18 +1,18 @@
 /**
  * @id question
  * @path /api/questions
- * @allowedMethods get, post
- * @validate true
+ * @get getQuestions
+ * @post postQuestions
  */
 function plugin() {
 
   return {
 
-    restGet: function(req, res) {
+    getQuestions: function(req, res) {
       res.send('Get a random question');
     },
 
-    postGet: function() {
+    postQuestions: function() {
 
     }
   };

@@ -22,9 +22,11 @@ _.map(gameOf.plug.getPlugins(), function(item) {
 
   var plugin = gameOf.plug.getPlugin(item.id);
 
-  if (item.allowedMethods.indexOf('get') != -1) {
-    pluginsExpress.get(item.path, plugin.restGet);
-  }
+  _.map(['get', 'post', 'patch', 'put', 'delete'], function(type) {
+    if (item.hasOwnProperty(type)) {
+      pluginsExpress[type](item.path, plugin[item.get]);
+    }
+  });
 
 });
 
