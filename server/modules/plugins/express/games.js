@@ -1,3 +1,5 @@
+var plug = require('../../modules/plug');
+
 /**
  * @id games
  * @path /api/games
@@ -11,7 +13,7 @@ function plugin() {
   return {
 
     restGet: function(req, res) {
-      res.send('Get a random games');
+      plug.jsonizer(res, {'foo': 'bar', 'bar': 'foo'});
     },
 
     postGet: function(req, res) {

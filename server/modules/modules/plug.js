@@ -30,10 +30,12 @@ module.exports = {
   /**
    * Set the plugins info. this will used for a small caching.
    *
+   * @param type
+   *   The type of the plugins: validation, express etc. etc.
    * @param info
    *   The information of the plugins.
    */
-  setPluginsInfo: function(info) {
+  setPluginsInfo: function(type, info) {
     if (this.pluginsInfo != undefined) {
       this.pluginsInfo = _.extend(this.pluginsInfo, info);
     }
@@ -119,9 +121,22 @@ module.exports = {
     }));
 
     // Sort of a low level cache.
-    this.setPluginsInfo(plugins);
+    this.setPluginsInfo(type, plugins);
 
     return plugins;
+  },
+
+  /**
+   * Jsoning a value to the page.
+   *
+   * @param res
+   *   Express response object.
+   * @param value
+   *   The value to jsoninze.
+   */
+  jsonizer: function(res, value) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(value));
   }
 
 };

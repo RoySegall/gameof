@@ -16,18 +16,16 @@ pluginsExpress = express();
 
 _.map(gameOf.plug.getPlugins(), function(item) {
   if (item.id.indexOf('_validation') != -1) {
-    // todo move to method.
     return;
   }
 
   var plugin = gameOf.plug.getPlugin(item.id);
 
-  _.map(['get', 'post', 'patch', 'put', 'delete'], function(type) {
+  _.map(gameOf.yml.parse().allowed_methods, function(type) {
     if (item.hasOwnProperty(type)) {
       pluginsExpress[type](item.path, plugin[item.get]);
     }
   });
-
 });
 
 app
