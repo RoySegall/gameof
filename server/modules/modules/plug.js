@@ -73,7 +73,7 @@ module.exports = {
    */
   getPlugin: function(plugin) {
 
-    var instance = require(this.getPluginInfo(plugin).path);
+    var instance = require(this.getPluginInfo(plugin).plugin_path);
 
     if (plugin.indexOf('_validation') != -1) {
       instance.validate = function(schema) {
@@ -113,7 +113,10 @@ module.exports = {
       var annotations_info = annotations.getSync(plugins_path + '/' + item).plugin;
 
       // Save the plugin path. Used when instantiate a plugin.
-      annotations_info.path = plugins_path + '/' + item;
+      annotations_info.plugin_path = plugins_path + '/' + item;
+
+      // Set the group of the plugin.
+      annotations_info.group = type;
 
       return [annotations_info.id, annotations_info];
     }));
@@ -122,6 +125,19 @@ module.exports = {
     this.setPluginsInfo(plugins);
 
     return plugins;
+  },
+
+  /**
+   * Jsoning a value to the page.
+   *
+   * @param res
+   *   Express response object.
+   * @param value
+   *   The value to jsoninze.
+   */
+  jsonizer: function(res, value) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(value));
   }
 
 };

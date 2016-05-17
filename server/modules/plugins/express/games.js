@@ -1,18 +1,22 @@
+var plug = require('../../modules/plug');
+
 /**
  * @id games
  * @path /api/games
- * @allowedMethods get, post, patch
+ *
+ * @get restGet
+ * @post postGet
  */
 function plugin() {
 
   return {
 
-    restGet: function () {
-      console.log('I am a games list');
+    restGet: function(req, res) {
+      plug.jsonizer(res, {'foo': 'bar', 'bar': 'foo'});
     },
 
-    postGet: function() {
-
+    postGet: function(req, res) {
+      res.send('posting a games')
     }
   };
 }

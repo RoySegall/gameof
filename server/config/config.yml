@@ -3,3 +3,9 @@ host: 'localhost'
 db: gameof
 pass:
 user:
+allowed_methods:
+  - get
+  - post
+  - patch
+  - put
+  - delete
