@@ -15,21 +15,21 @@ gameOf.plug.setPlugins('validation');
 pluginsExpress = express();
 
 _.map(gameOf.plug.getPlugins(), function(item) {
-  if (item.id.indexOf('_validation') != -1) {
+
+  if (item.group == 'express') {
+    // Only express plugins here.
     return;
   }
 
   var plugin = gameOf.plug.getPlugin(item.id);
 
+  // Go over the general allowed methods and check if the plugin implement them.
   _.map(gameOf.yml.parse().allowed_methods, function(type) {
     if (item.hasOwnProperty(type)) {
+      // Set the rest request type callback from the annotation.
       pluginsExpress[type](item.path, plugin[item.get]);
     }
   });
 });
 
-app
-  .use(pluginsExpress)
-  .listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.use(pluginsExpress).listen(3000);

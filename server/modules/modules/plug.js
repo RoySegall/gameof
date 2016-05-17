@@ -115,6 +115,9 @@ module.exports = {
       // Save the plugin path. Used when instantiate a plugin.
       annotations_info.plugin_path = plugins_path + '/' + item;
 
+      // Set the group of the plugin.
+      annotations_info.group = type;
+
       return [annotations_info.id, annotations_info];
     }));
 
