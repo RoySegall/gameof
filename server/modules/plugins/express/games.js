@@ -3,7 +3,6 @@ var plug = require('../../modules/plug');
 /**
  * @id games
  * @path /api/games
- * @allowedMethods get, post, patch
  *
  * @get restGet
  * @post postGet

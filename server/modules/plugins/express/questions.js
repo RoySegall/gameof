@@ -1,6 +1,7 @@
 /**
  * @id question
  * @path /api/questions
+ *
  * @get getQuestions
  * @post postQuestions
  */
