@@ -16,7 +16,7 @@ pluginsExpress = express();
 
 _.map(gameOf.plug.getPlugins(), function(item) {
 
-  if (item.group == 'express') {
+  if (item.group != 'express') {
     // Only express plugins here.
     return;
   }
@@ -27,7 +27,7 @@ _.map(gameOf.plug.getPlugins(), function(item) {
   _.map(gameOf.yml.parse().allowed_methods, function(type) {
     if (item.hasOwnProperty(type)) {
       // Set the rest request type callback from the annotation.
-      pluginsExpress[type](item.path, plugin[item.get]);
+      pluginsExpress[type](item.path, plugin[item[type]]);
     }
   });
 });
