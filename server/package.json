@@ -5,6 +5,7 @@
   "main": "server/app.js",
   "dependencies": {
     "annotations": "^0.1.338",
+    "body-parser": "^1.15.1",
     "colors": "^1.1.2",
     "conga-annotations": "^0.1.8",
     "express": "^4.13.4",
