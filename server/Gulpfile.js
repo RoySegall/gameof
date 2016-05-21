@@ -8,6 +8,9 @@ var gameOf = require('./modules/modules');
 var db = gameOf.db;
 var path = require('path');
 var util = require('util');
+var argv = require('yargs').argv;
+var bcrypt = require('bcrypt');
+
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
 gulp.task('styles', function() {
@@ -73,6 +76,31 @@ gulp.task('migrate:content', function() {
       return true;
     });
   });
+});
+
+gulp.task('user:create', function() {
+  if (argv.name == null || argv.pass == null) {
+    throw new Error('Username, password are missing from the command.');
+  }
+
+  argv.mail = argv.mail || 'demo@example.com';
+
+
+  const saltRounds = 10;
+
+  var salt = bcrypt.genSaltSync(saltRounds);
+
+  var user = {
+    name: argv.name,
+    pass: bcrypt.hashSync(argv.pass, salt),
+    mail: argv.mail
+  };
+
+  // bcrypt.compareSync(argv.pass, user.pass)
+
+  // todo: move to users.createUser()
+  db.invokeCallback(db.insert.bind(null, 'users', user));
+
 });
 
 //Watch task

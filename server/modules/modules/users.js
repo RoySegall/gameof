@@ -18,6 +18,13 @@ module.exports = {
    */
   clearUsers: function() {
     this.users = [];
+  },
+
+  /**
+   * Create user in the DB.
+   */
+  createUser: function() {
+
   }
 
 };

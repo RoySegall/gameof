@@ -5,6 +5,7 @@
   "main": "server/app.js",
   "dependencies": {
     "annotations": "^0.1.338",
+    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
     "colors": "^1.1.2",
     "conga-annotations": "^0.1.8",
@@ -16,7 +17,8 @@
     "rethinkdb": "^2.3.1",
     "underscore": "^1.8.3",
     "util": "^0.10.3",
-    "yamljs": "^0.2.7"
+    "yamljs": "^0.2.7",
+    "yargs": "^4.7.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
