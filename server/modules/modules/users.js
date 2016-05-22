@@ -43,11 +43,25 @@ module.exports = {
    *   The encrypted password.
    */
   encryptPassword: function(password) {
+    // todo move to config.yml
     const saltRounds = 10;
 
     var salt = bcrypt.genSaltSync(saltRounds);
 
     return bcrypt.hashSync(password, salt);
+  },
+
+  /**
+   * Authenticate user.
+   *
+   * @param name
+   *   The username.
+   * @param pass
+   *   The password.
+   *
+   * @return object
+   */
+  validateUser: function(name, pass) {
 
   }
 

@@ -45,6 +45,10 @@ module.exports = {
     return db.table(table).insert(data).run(connection, function() {
       connection.close();
     });
+  },
+
+  filter: function(table, data, callback, err, connection) {
+    r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
   }
 
 };
