@@ -2,8 +2,9 @@
   "0": {
     "id": "1",
     "name": "roy segall",
+    "pass": "roy segall",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
-    "email": "roy.segall@gizra.com",
+    "mail": "roy.segall@gizra.com",
     "current game": "56",
     "records": {
       "55": "90",
@@ -14,8 +15,9 @@
   "1": {
     "id": "2",
     "name": "nir galon",
+    "pass": "nir galon",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
-    "email": "nir.galon@gizra.com",
+    "mail": "nir.galon@gizra.com",
     "current game": "56",
     "records": {
       "54": "80",
@@ -26,8 +28,9 @@
   "2": {
     "id": "3",
     "name": "Israel Israeli",
+    "pass": "Israel Israeli",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
-    "email": "israel.israeli@gizra.com",
+    "mail": "israel.israeli@gizra.com",
     "current game": "57",
     "records": {
       "53": "30",

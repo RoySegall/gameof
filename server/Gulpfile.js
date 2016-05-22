@@ -9,7 +9,6 @@ var db = gameOf.db;
 var path = require('path');
 var util = require('util');
 var argv = require('yargs').argv;
-var bcrypt = require('bcrypt');
 
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
@@ -66,6 +65,11 @@ gulp.task('migrate:content', function() {
 
         for (var key in json_content) {
           if (json_content.hasOwnProperty(key)) {
+
+            if (table == 'users') {
+              json_content[key].pass = gameOf.users.encryptPassword(json_content[key].pass);
+            }
+
             db.invokeCallback(db.insert.bind(null, table, json_content[key]));
           }
         }
@@ -85,21 +89,11 @@ gulp.task('user:create', function() {
 
   argv.mail = argv.mail || 'demo@example.com';
 
-
-  const saltRounds = 10;
-
-  var salt = bcrypt.genSaltSync(saltRounds);
-
-  var user = {
+  gameOf.users.createUser({
     name: argv.name,
-    pass: bcrypt.hashSync(argv.pass, salt),
+    pass: gameOf.users.encryptPassword(argv.pass),
     mail: argv.mail
-  };
-
-  // bcrypt.compareSync(argv.pass, user.pass)
-
-  // todo: move to users.createUser()
-  db.invokeCallback(db.insert.bind(null, 'users', user));
+  });
 
 });
 
