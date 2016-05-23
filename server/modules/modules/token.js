@@ -1,4 +1,5 @@
 var yml = require('./yml');
+var crypto = require('crypto');
 
 module.exports = {
 
@@ -12,7 +13,7 @@ module.exports = {
     return {
       'access_token': module.exports.accessTokenGenerate(user),
       'refresh_token': module.exports.refreshTokenGenerate(user),
-      'expired_in': 120
+      'expired_in': Math.round((new Date().getTime() / 1000) + yml.parse().token_length)
     };
   },
 
@@ -23,7 +24,13 @@ module.exports = {
    *   The user object.
    */
   accessTokenGenerate: function(user) {
-    return 'a';
+    var base_string = user.name + user.pass + (new Date().getTime() / 1000);
+
+    for (var i = 0; i <= yml.parse().salt_round; i++) {
+      base_string = crypto.createHmac('sha256', base_string).digest('hex')
+    }
+
+    return base_string;
   },
 
   /**
@@ -33,7 +40,13 @@ module.exports = {
    *   The user object.
    */
   refreshTokenGenerate: function(user) {
-    return 'b';
+    var base_string = user.name + (new Date().getTime() / 1000) + user.pass;
+
+    for (var i = 0; i <= yml.parse().salt_round; i++) {
+      base_string = crypto.createHmac('sha256', base_string).digest('hex')
+    }
+
+    return base_string;
   }
 
 };

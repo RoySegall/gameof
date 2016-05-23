@@ -10,3 +10,4 @@ allowed_methods:
   - put
   - delete
 salt_round: 10
+token_length: 86400
