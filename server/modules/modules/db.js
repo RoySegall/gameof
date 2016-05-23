@@ -48,6 +48,19 @@ module.exports = {
   },
 
   /**
+   * Insert into the DB without closing the connection.
+   *
+   * @param table
+   * @param data
+   * @param callback
+   * @param err
+   * @param connection
+   */
+  insertAsync: function(table, data, callback, err, connection) {
+    r.db(yml.parse().db).table(table).insert(data).run(connection, callback);
+  },
+
+  /**
    * Filtering records from the DB.
    *
    * @param table

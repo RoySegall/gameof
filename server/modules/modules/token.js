@@ -13,7 +13,8 @@ module.exports = {
     return {
       'access_token': module.exports.accessTokenGenerate(user),
       'refresh_token': module.exports.refreshTokenGenerate(user),
-      'expired_in': Math.round((new Date().getTime() / 1000) + yml.parse().token_length)
+      'expired_in': Math.round((new Date().getTime() / 1000) + yml.parse().token_length),
+      'uid': user.id
     };
   },
 

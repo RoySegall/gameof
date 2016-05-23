@@ -41,8 +41,11 @@ function plugin() {
           else {
             var user = result[0];
             // Generate and access token and bind it to the user.
+            // todo: prevent generation in case we have one.
             var access_token = gameOf.token.tokenGenerate(user);
-            res.send(access_token);
+            gameOf.db.invokeCallback(gameOf.db.insertAsync.bind(null, 'access_token', access_token, function(err, info, bar) {
+              res.send(access_token);
+            }));
           }
         });
       }));
