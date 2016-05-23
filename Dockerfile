@@ -1,9 +1,12 @@
+FROM ubuntu:16.04
 
-rethinkdb:
-https://hub.docker.com/_/rethinkdb/
+RUN apt-get update && apt-get install -y curl wget
 
-nodejs:
-https://hub.docker.com/_/node/
+# Install Node.js for npm modules.
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
+RUN apt-get install -y nodejs
 
-elm:
-https://hub.docker.com/r/nacyot/elm-elm/
+VOLUME ["/usr/src"]
+# ENTRYPOINT ["/usr/src/start.sh"]
+
+EXPOSE 80
