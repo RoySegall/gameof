@@ -1,5 +1,6 @@
 var bcrypt = require('../../node_modules/bcrypt');
 var db = require('../modules/db');
+var crypto = require('crypto');
 
 module.exports = {
 
@@ -43,12 +44,7 @@ module.exports = {
    *   The encrypted password.
    */
   encryptPassword: function(password) {
-    // todo move to config.yml
-    const saltRounds = 10;
-
-    var salt = bcrypt.genSaltSync(saltRounds);
-
-    return bcrypt.hashSync(password, salt);
+    return crypto.createHmac('sha256', password).digest('hex');
   },
 
   /**

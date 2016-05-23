@@ -1,5 +1,5 @@
 var gameOf = require('../../modules');
-var bcrypt = require('../../../node_modules/bcrypt');
+var _ = require('../../../node_modules/underscore')
 
 /**
  * @id access_token
@@ -17,7 +17,11 @@ function plugin() {
         new Error();
       }
 
-      gameOf.db.invokeCallback(gameOf.db.filter.bind(null, 'users', {'name': req.body.username}, function(err, cursor) {
+      var filter = {
+        'name': req.body.username,
+        'pass': gameOf.users.encryptPassword(req.body.password)
+      };
+      gameOf.db.invokeCallback(gameOf.db.filter.bind(null, 'users', filter, function(err, cursor) {
         if (err) {
           throw err;
         }
@@ -27,18 +31,20 @@ function plugin() {
             throw err;
           }
 
-          var object = JSON.stringify(result, null, 2);
+          if (result.length == 0) {
+            res.status(401);
+            gameOf.plug.jsonizer(res, {
+              'message': 'There is no user with the provided credentials.',
+              'statusCode': 401
+            });
+          }
+          else {
+            var user = result[0];
 
-          res.send(object);
-
+            // Generate and access token and bind it to the user.
+          }
         });
       }));
-
-      // Search for the user.
-
-      // valid the username and password.
-
-      // Generate and access token and bind it to the user.
     }
 
   };

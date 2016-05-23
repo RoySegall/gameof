@@ -47,6 +47,20 @@ module.exports = {
     });
   },
 
+  /**
+   * Filtering records from the DB.
+   *
+   * @param table
+   *   The name of the table.
+   * @param data
+   *   A json object to filter by.
+   * @param callback
+   *   A callback function passed with the cursor object.
+   * @param err
+   *   RethinkDB error object.
+   * @param connection
+   *   RethinkDB connection object.
+   */
   filter: function(table, data, callback, err, connection) {
     r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
   }
