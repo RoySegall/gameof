@@ -40,8 +40,9 @@ function plugin() {
           }
           else {
             var user = result[0];
-
             // Generate and access token and bind it to the user.
+            var access_token = gameOf.token.tokenGenerate(user);
+            res.send(access_token);
           }
         });
       }));

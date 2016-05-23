@@ -1,6 +1,5 @@
 {
   "0": {
-    "id": "1",
     "name": "roy segall",
     "pass": "roy segall",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
@@ -13,7 +12,6 @@
     "admin": "true"
   },
   "1": {
-    "id": "2",
     "name": "nir galon",
     "pass": "nir galon",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",
@@ -26,7 +24,6 @@
     "admin": "true"
   },
   "2": {
-    "id": "3",
     "name": "Israel Israeli",
     "pass": "Israel Israeli",
     "social network id": "8743b52063cd84097a65d1633f5c74f5",

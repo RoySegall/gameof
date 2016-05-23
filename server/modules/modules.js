@@ -4,6 +4,7 @@ module.exports = {
   yml: require('./modules/yml'),
   db: require('./modules/db'),
   plug: require('./modules/plug'),
+  token: require('./modules/token'),
 
   // Data related modules.
   games: {},

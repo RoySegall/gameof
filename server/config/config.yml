@@ -9,3 +9,4 @@ allowed_methods:
   - patch
   - put
   - delete
+salt_round: 10
