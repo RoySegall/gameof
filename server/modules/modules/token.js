@@ -48,6 +48,14 @@ module.exports = {
     }
 
     return base_string;
+  },
+
+  deleteExpiredTokens: function() {
+
+  },
+
+  getUserByToken: function(access_token) {
+
   }
 
 };
