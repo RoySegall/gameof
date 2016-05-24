@@ -28,7 +28,7 @@ module.exports = {
     var base_string = user.name + user.pass + (new Date().getTime() / 1000);
 
     for (var i = 0; i <= yml.parse().salt_round; i++) {
-      base_string = crypto.createHmac('sha256', base_string).digest('hex')
+      base_string = crypto.createHmac('sha256', base_string).digest('hex');
     }
 
     return base_string;
@@ -44,7 +44,7 @@ module.exports = {
     var base_string = user.name + (new Date().getTime() / 1000) + user.pass;
 
     for (var i = 0; i <= yml.parse().salt_round; i++) {
-      base_string = crypto.createHmac('sha256', base_string).digest('hex')
+      base_string = crypto.createHmac('sha256', base_string).digest('hex');
     }
 
     return base_string;
