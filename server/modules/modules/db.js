@@ -76,6 +76,10 @@ module.exports = {
    */
   filter: function(table, data, callback, err, connection) {
     r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
+  },
+
+  join: function(base_table, join_row, join_table, callback, err, connection) {
+    r.db(yml.parse().db).table(base_table).eqjoin(join_row, r.table(join_table)).run(connection, callback);
   }
 
 };

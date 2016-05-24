@@ -1,5 +1,4 @@
 var gameOf = require('../../modules');
-var _ = require('../../../node_modules/underscore')
 
 /**
  * @id refresh_token
@@ -12,6 +11,7 @@ function plugin() {
   return {
 
     refreshAccessToken: function(req, res) {
+      // r.db('gameof').table('access_token').filter({access_token: 'string'}).eqJoin('uid', r.db('gameof').table('users'))
     }
   };
 }

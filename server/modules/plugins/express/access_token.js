@@ -12,7 +12,6 @@ function plugin() {
   return {
 
     authenticateUser: function(req, res) {
-      console.log('a');
       if (req.body.username == null || req.body.password == undefined) {
         res.send('You need to pass the username and password.');
         new Error();
