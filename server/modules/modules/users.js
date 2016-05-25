@@ -1,4 +1,3 @@
-var bcrypt = require('../../node_modules/bcrypt');
 var db = require('../modules/db');
 var crypto = require('crypto');
 
