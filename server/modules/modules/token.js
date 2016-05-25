@@ -55,18 +55,29 @@ module.exports = {
 
   },
 
-  getUserByToken: function(access_token) {
+  getUserByToken: function(access_token, callback) {
     var gameOf = require('../modules');
 
-    console.log(gameOf)
+    return r.connect(gameOf.db.connection(), function(err, connection) {
+      var db = gameOf.db.r();
+
+      db.table('access_token').filter({access_token: access_token}).eqJoin('uid', db.table('users')).run(connection, function(err, cursor) {
+        if (err) {
+          throw err;
+        }
+
+        cursor.toArray(callback);
+      });
+    });
   },
 
   deferAccessToken: function(req, res, next) {
-    req.userObject = {
-      'foo': 'bar'
-    };
-
-    next();
-  },
+    if (req.headers.access_token != null) {
+      module.exports.getUserByToken(req.headers.access_token, function(err, result) {
+        req.loggedInUser = result[0].right;
+        next();
+      });
+    }
+  }
   
 };
