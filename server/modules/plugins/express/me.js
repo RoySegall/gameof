@@ -1,5 +1,4 @@
 var gameOf = require('../../modules');
-var r = require('../../../node_modules/rethinkdb');
 
 /**
  * @id me
