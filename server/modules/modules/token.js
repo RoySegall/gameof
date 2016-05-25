@@ -1,4 +1,5 @@
 var yml = require('./yml');
+var r = require('../../node_modules/rethinkdb');
 var crypto = require('crypto');
 
 module.exports = {
@@ -55,7 +56,17 @@ module.exports = {
   },
 
   getUserByToken: function(access_token) {
+    var gameOf = require('../modules');
 
-  }
+    console.log(gameOf)
+  },
 
+  deferAccessToken: function(req, res, next) {
+    req.userObject = {
+      'foo': 'bar'
+    };
+
+    next();
+  },
+  
 };

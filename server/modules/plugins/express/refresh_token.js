@@ -11,7 +11,7 @@ function plugin() {
   return {
 
     refreshAccessToken: function(req, res) {
-      // r.db('gameof').table('access_token').filter({access_token: 'string'}).eqJoin('uid', r.db('gameof').table('users'))
+
     }
   };
 }

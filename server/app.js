@@ -36,5 +36,6 @@ _.map(gameOf.plug.getPlugins(), function(item) {
 app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use(gameOf.token.deferAccessToken)
   .use(pluginsExpress)
   .listen(3000);

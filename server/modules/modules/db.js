@@ -3,6 +3,14 @@ var yml = require('./yml'),
 
 module.exports = {
 
+  connection: function() {
+    return {host: yml.parse().host, port: yml.parse().port};
+  },
+
+  r: function() {
+    return r.db(yml.parse().db);
+  },
+
   /**
    * Creating a DB as defined in the YML file.
    */
@@ -16,7 +24,7 @@ module.exports = {
    * Establish connection for the DB.
    */
   invokeCallback: function(callback) {
-    return r.connect( {host: yml.parse().host, port: yml.parse().port}, callback);
+    return r.connect( this.connection(), callback);
   },
 
   /**
@@ -76,10 +84,6 @@ module.exports = {
    */
   filter: function(table, data, callback, err, connection) {
     r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
-  },
-
-  join: function(base_table, join_row, join_table, callback, err, connection) {
-    r.db(yml.parse().db).table(base_table).eqjoin(join_row, r.table(join_table)).run(connection, callback);
   }
 
 };

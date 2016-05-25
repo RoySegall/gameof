@@ -14,6 +14,8 @@ function plugin() {
 
     describeEndPoints: function(req, res) {
 
+      console.log(req.userObject);
+
       var plugins = _.object(_.map(plug.getPlugins(), function(plugin) {
 
         if (plugin.group != 'express') {
