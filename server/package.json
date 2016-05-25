@@ -5,7 +5,6 @@
   "main": "server/app.js",
   "dependencies": {
     "annotations": "^0.1.338",
-    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
     "colors": "^1.1.2",
     "conga-annotations": "^0.1.8",
