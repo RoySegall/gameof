@@ -78,6 +78,9 @@ module.exports = {
         next();
       });
     }
+    else {
+      next();
+    }
   }
   
 };
