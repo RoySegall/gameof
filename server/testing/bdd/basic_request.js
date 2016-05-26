@@ -29,7 +29,7 @@ vows.describe('Testing the api page').addBatch({
     },
     'Check the ednpoints exists in the /api path': function(topic) {
       var body = topic.toJSON().body;
-      assert.greater(body.indexOf('access_token'), 222);
+      assert.greater(body.indexOf('access_token'), -1);
     }
   }
 
