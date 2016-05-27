@@ -1,5 +1,5 @@
 var gameOf = require('../../modules');
-var _ = require('../../../node_modules/underscore')
+var _ = require('../../../node_modules/underscore');
 
 /**
  * @id access_token

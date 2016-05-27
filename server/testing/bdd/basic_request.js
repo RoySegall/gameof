@@ -1,3 +1,6 @@
+/**
+ * Testing the basic api.
+ */
 var vows = require('vows'),
   assert = require('assert'),
   request = require('request');
