@@ -1,18 +1,19 @@
-var plug = require('../../modules/plug'),
-    yml = require('../../modules/yml'),
-    _ = require('../../../node_modules/underscore');
-
 /**
  * @id describe
  * @path /api
  *
  * @get describeEndPoints
+ *
+ * @modules underscore
  */
 function plugin() {
 
   return {
 
     describeEndPoints: function(req, res) {
+
+      var plug = module.exports.gameOf.plug;
+      var _ = module.exports.underscore;
 
       var plugins = _.object(_.map(plug.getPlugins(), function(plugin) {
 

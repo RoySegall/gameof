@@ -24,6 +24,20 @@ _.map(gameOf.plug.getPlugins(), function(item) {
 
   var plugin = gameOf.plug.getPlugin(item.id);
 
+  // Set dependencies.
+  plugin.gameOf = gameOf;
+
+  if (item.modules != undefined) {
+    _.map(item.modules.split(','), function(module) {
+      try {
+        plugin[module] = require(module.trim());
+      }
+      catch (e) {
+        console.log(e);
+      }
+    });
+  }
+
   // Go over the general allowed methods and check if the plugin implement them.
   _.map(gameOf.yml.parse().allowed_methods, function(type) {
     if (item.hasOwnProperty(type)) {

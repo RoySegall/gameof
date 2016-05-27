@@ -1,5 +1,3 @@
-var gameOf = require('../../modules');
-
 /**
  * @id me
  * @path /api/me
@@ -16,7 +14,7 @@ function plugin() {
         throw new Error('Access token was not provided.');
       }
 
-      gameOf.token.getUserByToken(req.headers.access_token, function(err, result) {
+      module.exports.gameOf.token.getUserByToken(req.headers.access_token, function(err, result) {
         if (err) {
           throw err;
         }
