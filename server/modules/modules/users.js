@@ -1,6 +1,3 @@
-var db = require('../modules/db');
-var crypto = require('crypto');
-
 module.exports = {
 
   /**
@@ -30,6 +27,7 @@ module.exports = {
    *   The user object.
    */
   createUser: function(user) {
+    var db = module.parent.exports.db;
     return db.invokeCallback(db.insert.bind(null, 'users', user));
   },
 
@@ -43,6 +41,7 @@ module.exports = {
    *   The encrypted password.
    */
   encryptPassword: function(password) {
+    var crypto = require('crypto');
     return crypto.createHmac('sha256', password).digest('hex');
   },
 

@@ -1,13 +1,15 @@
-var yml = require('./yml'),
-  r = require('../../node_modules/rethinkdb');
 
 module.exports = {
 
   connection: function() {
+    var yml = module.parent.exports.yml;
+
     return {host: yml.parse().host, port: yml.parse().port};
   },
 
   r: function() {
+    var yml = module.parent.exports.yml;
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
     return r.db(yml.parse().db);
   },
 
@@ -15,6 +17,8 @@ module.exports = {
    * Creating a DB as defined in the YML file.
    */
   dbCreate: function(err, connection) {
+    var yml = module.parent.exports.yml;
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
     return r.dbCreate(yml.parse().db).run(connection, function() {
       connection.close();
     });
@@ -24,6 +28,7 @@ module.exports = {
    * Establish connection for the DB.
    */
   invokeCallback: function(callback) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
     return r.connect( this.connection(), callback);
   },
 
@@ -31,6 +36,8 @@ module.exports = {
    * Create a table.
    */
   tableCreate: function(table, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
     var db = r.db(yml.parse().db);
 
     return db.tableCreate(table).run(connection, function(err, result) {
@@ -48,6 +55,8 @@ module.exports = {
    * Inserting data into a table.
    */
   insert: function(table, data, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
     var db = r.db(yml.parse().db);
 
     return db.table(table).insert(data).run(connection, function() {
@@ -65,6 +74,8 @@ module.exports = {
    * @param connection
    */
   insertAsync: function(table, data, callback, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
     r.db(yml.parse().db).table(table).insert(data).run(connection, callback);
   },
 
@@ -83,6 +94,8 @@ module.exports = {
    *   RethinkDB connection object.
    */
   filter: function(table, data, callback, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
     r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
   }
 

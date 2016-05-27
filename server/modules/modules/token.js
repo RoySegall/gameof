@@ -1,7 +1,3 @@
-var yml = require('./yml');
-var r = require('../../node_modules/rethinkdb');
-var crypto = require('crypto');
-
 module.exports = {
 
   /**
@@ -26,6 +22,8 @@ module.exports = {
    *   The user object.
    */
   accessTokenGenerate: function(user) {
+    var crypto = require('crypto');
+    var yml = module.parent.exports.yml;
     var base_string = user.name + user.pass + (new Date().getTime() / 1000);
 
     for (var i = 0; i <= yml.parse().salt_round; i++) {
@@ -42,6 +40,8 @@ module.exports = {
    *   The user object.
    */
   refreshTokenGenerate: function(user) {
+    var crypto = require('crypto');
+    var yml = module.parent.exports.yml;
     var base_string = user.name + (new Date().getTime() / 1000) + user.pass;
 
     for (var i = 0; i <= yml.parse().salt_round; i++) {
@@ -57,6 +57,7 @@ module.exports = {
 
   getUserByToken: function(access_token, callback) {
     var gameOf = require('../modules');
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
 
     return r.connect(gameOf.db.connection(), function(err, connection) {
       var db = gameOf.db.r();

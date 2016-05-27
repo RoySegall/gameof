@@ -1,5 +1,3 @@
-var yml = require('../../node_modules/yamljs');
-
 module.exports = {
   
   setYmlPath: function(path) {
@@ -11,6 +9,7 @@ module.exports = {
   },
 
   parse: function() {
+    var yml = require(module.parent.exports.getModulesPath() + 'yamljs');
     return yml.load(this.getYmlPath());
   }
 
