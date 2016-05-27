@@ -1,5 +1,6 @@
 var gameOf = require('./modules/modules'),
     express = require('express'),
+    bodyParser =require('body-parser'),
     app = express(),
     _ = require('underscore');
 
@@ -32,4 +33,9 @@ _.map(gameOf.plug.getPlugins(), function(item) {
   });
 });
 
-app.use(pluginsExpress).listen(3000);
+app
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
+  .use(gameOf.token.deferAccessToken)
+  .use(pluginsExpress)
+  .listen(3000);

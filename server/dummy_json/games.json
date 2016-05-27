@@ -1,6 +1,5 @@
 {
   "gizra": {
-    "id": "gizra",
     "title": "Game of Gizra",
     "owner": 1,
     "winner": 3,
@@ -8,7 +7,6 @@
     "users_counter": 20
   },
   "hasadna": {
-    "id": "hasadna",
     "title": "Hasadna",
     "owner": 4,
     "winner": 1,

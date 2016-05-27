@@ -8,6 +8,8 @@ var gameOf = require('./modules/modules');
 var db = gameOf.db;
 var path = require('path');
 var util = require('util');
+var argv = require('yargs').argv;
+
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
 gulp.task('styles', function() {
@@ -63,6 +65,11 @@ gulp.task('migrate:content', function() {
 
         for (var key in json_content) {
           if (json_content.hasOwnProperty(key)) {
+
+            if (table == 'users') {
+              json_content[key].pass = gameOf.users.encryptPassword(json_content[key].pass);
+            }
+
             db.invokeCallback(db.insert.bind(null, table, json_content[key]));
           }
         }
@@ -73,6 +80,21 @@ gulp.task('migrate:content', function() {
       return true;
     });
   });
+});
+
+gulp.task('user:create', function() {
+  if (argv.name == null || argv.pass == null) {
+    throw new Error('Username, password are missing from the command.');
+  }
+
+  argv.mail = argv.mail || 'demo@example.com';
+
+  gameOf.users.createUser({
+    name: argv.name,
+    pass: gameOf.users.encryptPassword(argv.pass),
+    mail: argv.mail
+  });
+
 });
 
 //Watch task

@@ -1,6 +1,5 @@
 {
   "0": {
-    "id": "0",
     "game_id": "gizra",
     "title": "what was the name of employee previous to Roy?",
     "points": 2,
@@ -14,7 +13,6 @@
     ]
   },
   "1": {
-    "id": "1",
     "game_id": "gizra",
     "title": "When the company founded",
     "points": 1,
@@ -28,7 +26,6 @@
     ]
   },
   "2": {
-    "id": "2",
     "game_id": "gizra",
     "title": "What is the type if the contract Gizra using?",
     "points": 3,
@@ -42,7 +39,6 @@
     ]
   },
   "3": {
-    "id": 3,
     "game_id": "gizra",
     "title": "what was the name of the project which Nir was his manager?",
     "points": 3,
@@ -56,7 +52,6 @@
     ]
   },
   "4": {
-    "id": 4,
     "game_id": "gizra",
     "title": "What candy did Roy had on his desk?",
     "points": 1,
@@ -70,7 +65,6 @@
     ]
   },
   "5": {
-    "id": 5,
     "title": "What was the duplicate name in the company? (i.e John doe and John kenedy)",
     "points": 1,
     "correct_answer": "roy",
@@ -83,7 +77,6 @@
     ]
   },
   "6": {
-    "id": 6,
     "title": "To which city was the second company trip?",
     "points": 1,
     "correct_answer": "jerusalem",
@@ -96,7 +89,6 @@
     ]
   },
   "7": {
-    "id": 7,
     "title": "In which company Johanthan worked?",
     "points": 1,
     "correct_answer": "commerce",
@@ -109,7 +101,6 @@
     ]
   },
   "8": {
-    "id": 8,
     "title": "Who was the employees that left and went back to work?",
     "points": 2,
     "correct_answer": "itamar_amir",
@@ -122,7 +113,6 @@
     ]
   },
   "9": {
-    "id": 9,
     "title": "Bonus: What the name of the hashmabir which Nir Yarin incharge of?",
     "points": 4,
     "correct_answer": "open_taba",
