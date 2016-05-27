@@ -7,6 +7,7 @@ module.exports = {
    *   The user object.
    */
   tokenGenerate: function(user) {
+    var yml = module.parent.exports.yml;
     return {
       'access_token': module.exports.accessTokenGenerate(user),
       'refresh_token': module.exports.refreshTokenGenerate(user),
