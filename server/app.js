@@ -4,6 +4,9 @@ var gameOf = require('./modules/modules'),
     app = express(),
     _ = require('underscore');
 
+// Set the base path for modules.
+gameOf.setModulesPath(__dirname + '/node_modules/');
+
 // Db stuff here.
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 gameOf.plug.setPluginsPath(__dirname + '/modules/plugins');
