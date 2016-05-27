@@ -11,6 +11,7 @@ var util = require('util');
 var argv = require('yargs').argv;
 
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
+gameOf.setModulesPath(__dirname + '/node_modules/');
 
 gulp.task('styles', function() {
   gulp.src('front/sass/**/*.scss')
