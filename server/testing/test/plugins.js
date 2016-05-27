@@ -3,6 +3,8 @@ var assert = require('chai').assert,
     _ = require('../../node_modules/underscore'),
     plug = gameOf.plug;
 
+gameOf.setModulesPath(__dirname + '/../../node_modules/');
+
 plug.setPluginsPath(__dirname + '/mocks');
 
 describe('Testing the plugin frameworks', function () {

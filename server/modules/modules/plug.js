@@ -1,10 +1,3 @@
-var
-  path = require('../../node_modules/path'),
-  fs = require('fs'),
-  annotations = require('../../node_modules/annotations'),
-  _ = require('../../node_modules/underscore'),
-  Joi = require('../../node_modules/joi');
-
 module.exports = {
 
   /**
@@ -34,6 +27,7 @@ module.exports = {
    *   The information of the plugins.
    */
   setPluginsInfo: function(info) {
+    var _ = require(module.parent.exports.getModulesPath() + 'underscore');
     if (this.pluginsInfo != undefined) {
       this.pluginsInfo = _.extend(this.pluginsInfo, info);
     }
@@ -74,6 +68,9 @@ module.exports = {
   getPlugin: function(plugin) {
 
     var instance = require(this.getPluginInfo(plugin).plugin_path);
+    var path = module.parent.exports.getModulesPath();
+    var Joi = require(path + 'joi');
+    var _ = require(path + 'underscore');
 
     if (plugin.indexOf('_validation') != -1) {
       instance.validate = function(schema) {
@@ -103,6 +100,12 @@ module.exports = {
    *   plugins is located.
    */
   setPlugins: function(type) {
+
+    var modules = module.parent.exports.getModulesPath();
+    var path = require(modules + 'path');
+    var annotations = require(modules + 'annotations');
+    var _ = require(modules + 'underscore');
+    var fs = require('fs');
 
     // Construct the plugins path.
     var plugins_path = path.resolve(this.getPluginsPath(), type);

@@ -1,5 +1,3 @@
-var gameOf = require('../../modules');
-
 /**
  * @id refresh_token
  * @path /api/refresh_token

@@ -1,5 +1,3 @@
-var plug = require('../../modules/plug');
-
 /**
  * @id games
  * @path /api/games
@@ -12,7 +10,7 @@ function plugin() {
   return {
 
     restGet: function(req, res) {
-      plug.jsonizer(res, {'foo': 'bar', 'bar': 'foo'});
+      module.exports.gameOf.plug.jsonizer(res, {'foo': 'bar', 'bar': 'foo'});
     },
 
     postGet: function(req, res) {

@@ -4,6 +4,9 @@ var gameOf = require('./modules/modules'),
     app = express(),
     _ = require('underscore');
 
+// Set the base path for modules.
+gameOf.setModulesPath(__dirname + '/node_modules/');
+
 // Db stuff here.
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 gameOf.plug.setPluginsPath(__dirname + '/modules/plugins');
@@ -23,6 +26,20 @@ _.map(gameOf.plug.getPlugins(), function(item) {
   }
 
   var plugin = gameOf.plug.getPlugin(item.id);
+
+  // Set dependencies.
+  plugin.gameOf = gameOf;
+
+  if (item.modules != undefined) {
+    _.map(item.modules.split(','), function(module) {
+      try {
+        plugin[module] = require(module.trim());
+      }
+      catch (e) {
+        console.log(e);
+      }
+    });
+  }
 
   // Go over the general allowed methods and check if the plugin implement them.
   _.map(gameOf.yml.parse().allowed_methods, function(type) {

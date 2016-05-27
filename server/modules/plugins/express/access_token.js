@@ -1,6 +1,3 @@
-var gameOf = require('../../modules');
-var _ = require('../../../node_modules/underscore');
-
 /**
  * @id access_token
  * @path /api/access_token
@@ -12,6 +9,9 @@ function plugin() {
   return {
 
     authenticateUser: function(req, res) {
+
+      var gameOf = module.exports.gameOf;
+
       if (req.body.username == null || req.body.password == undefined) {
         res.send('You need to pass the username and password.');
         new Error();
