@@ -33,7 +33,7 @@ function plugin() {
 
           if (result.length == 0) {
             res.status(401);
-            gameOf.plug.jsonizer(res, {
+            gameOf.formatter.jsonizer(res, {
               'message': 'There is no user with the provided credentials.',
               'statusCode': 401
             });

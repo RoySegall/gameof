@@ -13,6 +13,7 @@ module.exports = {
   db: require('./modules/db'),
   plug: require('./modules/plug'),
   token: require('./modules/token'),
+  formatter: require('./modules/formatter'),
 
   // Data related modules.
   games: {},

@@ -13,6 +13,7 @@ function plugin() {
     describeEndPoints: function(req, res) {
 
       var plug = module.exports.gameOf.plug;
+      var formatter = module.exports.gameOf.formatter;
       var _ = module.exports.underscore;
 
       var plugins = _.object(_.map(plug.getPlugins(), function(plugin) {
@@ -26,7 +27,7 @@ function plugin() {
         }];
       }));
 
-      plug.jsonizer(res, plugins);
+      formatter.jsonizer(res, plugins);
     }
 
   };

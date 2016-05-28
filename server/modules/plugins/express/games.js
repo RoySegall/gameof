@@ -13,7 +13,7 @@ function plugin() {
 
     restGet: function(req, res) {
       var db = module.exports.gameOf.db;
-      var plug = module.exports.gameOf.plug;
+      var formatter = module.exports.gameOf.formatter;
 
       var filter = {};
 
@@ -27,13 +27,45 @@ function plugin() {
         }
 
         cursor.toArray(function(err, result) {
-          plug.jsonizer(res, result)
+          formatter.jsonizer(res, result)
         });
       }));
     },
 
     postGet: function(req, res) {
-      res.send('posting a games')
+      var db = module.exports.gameOf.db;
+      var formatter = module.exports.gameOf.formatter;
+      var plug = module.exports.gameOf.plug;
+
+      if (req.loggedInUser == undefined) {
+        formatter.httpResponse(res, 401, 'The user object was not found.');
+        return;
+      }
+
+      var account = req.loggedInUser;
+
+      if (!account.admin) {
+        formatter.httpResponse(res, 401, 'You are not authorized to create a game.');
+        return;
+      }
+      
+      var validate_results = plug.getPlugin('games_validation').validate(req.body);
+
+      console.log(validate_results);
+
+      if (validate_results != null) {
+        formatter.httpResponse(res, 401, 'The request body is un-valid', validate_results);
+        return;
+      }
+
+      db.invokeCallback(db.insertAsync.bind(null, 'games', req.body, function(err, result) {
+        if (err) {
+          throw err;
+        }
+
+        req.body.id = result.generated_keys[0];
+        formatter.jsonizer(res, req.body);
+      }));
     }
   };
 }
