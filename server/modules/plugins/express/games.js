@@ -77,6 +77,8 @@ function plugin() {
         return;
       }
 
+      // todo: validate.
+
       db.invokeCallback(db.update.bind(null, 'games', req.params.id, req.body, function(err, object) {
         db.invokeCallback(db.get.bind(null, 'games', req.params.id, function(err, object) {
           if (err) {
