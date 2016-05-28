@@ -2,7 +2,7 @@
  * @id games
  * @path /api/games
  *
- * @subRoute /:id, /:id/:name
+ * @subRoute /:id
  *
  * @get restGet
  * @post postGet
@@ -51,8 +51,6 @@ function plugin() {
       
       var validate_results = plug.getPlugin('games_validation').validate(req.body);
 
-      console.log(validate_results);
-
       if (validate_results != null) {
         formatter.httpResponse(res, 401, 'The request body is un-valid', validate_results);
         return;
@@ -64,6 +62,7 @@ function plugin() {
         }
 
         req.body.id = result.generated_keys[0];
+        req.body.uid = account.id;
         formatter.jsonizer(res, req.body);
       }));
     }
