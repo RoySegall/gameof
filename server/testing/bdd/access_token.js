@@ -10,7 +10,7 @@ vows.describe('Testing user authentication')
   .addBatch({
 
     'Testing user validation': {
-      topic: function () {
+      topic: function() {
         request ({
           uri: 'http://localhost:3000/api/access_token',
           method: 'post',
@@ -26,7 +26,7 @@ vows.describe('Testing user authentication')
     },
 
     'Testing access token requiring': {
-      topic: function () {
+      topic: function() {
         request ({
           uri: 'http://localhost:3000/api/access_token',
           method: 'post',
@@ -47,7 +47,7 @@ vows.describe('Testing user authentication')
 .addBatch({
 
   'Validating the access token': {
-    topic: function () {
+    topic: function() {
       request ({
         uri: 'http://localhost:3000/api/me',
         method: 'get',
@@ -56,7 +56,7 @@ vows.describe('Testing user authentication')
         }
       }, this.callback );
     },
-    'The server return an access callback': function (topic) {
+    'The server return an access callback': function(topic) {
       var body = JSON.parse(topic.toJSON().body);
 
       assert.equal(body.name, 'roy segall');

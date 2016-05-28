@@ -52,7 +52,7 @@ function plugin() {
       var validate_results = plug.getPlugin('games_validation').validate(req.body);
 
       if (validate_results != null) {
-        formatter.httpResponse(res, 401, 'The request body is un-valid', validate_results);
+        formatter.httpResponse(res, 400, 'The request body is un-valid', validate_results);
         return;
       }
 
