@@ -70,6 +70,7 @@ function plugin() {
 
     patchGet: function(req, res) {
       var db = module.exports.gameOf.db;
+      var plug = module.exports.game;
       var formatter = module.exports.gameOf.formatter;
 
       if (req.params.id == undefined) {
@@ -77,7 +78,24 @@ function plugin() {
         return;
       }
 
-      // todo: validate.
+      if (req.loggedInUser == undefined) {
+        formatter.httpResponse(res, 401, 'The user object was not found.');
+        return;
+      }
+
+      var account = req.loggedInUser;
+
+      if (!account.admin) {
+        formatter.httpResponse(res, 401, 'You are not authorized to create a game.');
+        return;
+      }
+
+      var validate_results = plug.getPlugin('games_validation').validate(req.body);
+
+      if (validate_results != null) {
+        formatter.httpResponse(res, 400, 'The request body is un-valid', validate_results);
+        return;
+      }
 
       db.invokeCallback(db.update.bind(null, 'games', req.params.id, req.body, function(err, object) {
         db.invokeCallback(db.get.bind(null, 'games', req.params.id, function(err, object) {
