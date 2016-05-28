@@ -6,6 +6,7 @@
  *
  * @get restGet
  * @post postGet
+ * @patch patchGet
  */
 function plugin() {
 
@@ -64,6 +65,26 @@ function plugin() {
         req.body.id = result.generated_keys[0];
         req.body.uid = account.id;
         formatter.jsonizer(res, req.body);
+      }));
+    },
+
+    patchGet: function(req, res) {
+      var db = module.exports.gameOf.db;
+      var formatter = module.exports.gameOf.formatter;
+
+      if (req.params.id == undefined) {
+        formatter.httpResponse(res, 401, 'The id is missing.');
+        return;
+      }
+
+      db.invokeCallback(db.update.bind(null, 'games', req.params.id, req.body, function(err, object) {
+        db.invokeCallback(db.get.bind(null, 'games', req.params.id, function(err, object) {
+          if (err) {
+            throw err;
+          }
+
+          formatter.jsonizer(res, object);
+        }));
       }));
     }
   };
