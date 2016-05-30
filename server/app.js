@@ -46,6 +46,19 @@ _.map(gameOf.plug.getPlugins(), function(item) {
     if (item.hasOwnProperty(type)) {
       // Set the rest request type callback from the annotation.
       pluginsExpress[type](item.path, plugin[item[type]]);
+
+      // Declaring of sub routes.
+      if (item.hasOwnProperty('subRoute')) {
+        if (item.subRoute.indexOf(',') != -1) {
+          // More than one single sub route.
+          _.map(item.subRoute.split(','), function(subRoute) {
+            pluginsExpress[type](item.path + subRoute.trim(), plugin[item[type]]);
+          });
+        }
+        else {
+          pluginsExpress[type](item.path + item.subRoute, plugin[item[type]]);
+        }
+      }
     }
   });
 });

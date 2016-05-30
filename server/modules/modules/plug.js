@@ -130,17 +130,4 @@ module.exports = {
     return plugins;
   },
 
-  /**
-   * Jsoning a value to the page.
-   *
-   * @param res
-   *   Express response object.
-   * @param value
-   *   The value to jsoninze.
-   */
-  jsonizer: function(res, value) {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(value));
-  }
-
 };

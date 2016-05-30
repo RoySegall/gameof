@@ -97,6 +97,18 @@ module.exports = {
     var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
     var yml = module.parent.exports.yml;
     r.db(yml.parse().db).table(table).filter(data).run(connection, callback);
+  },
+
+  get: function(table, id, callback, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
+    r.db(yml.parse().db).table(table).get(id).run(connection, callback);
+  },
+
+  update: function(table, id, data, callback, err, connection) {
+    var r = require(module.parent.exports.getModulesPath() + 'rethinkdb');
+    var yml = module.parent.exports.yml;
+    r.db(yml.parse().db).table(table).get(id).update(data).run(connection, callback);
   }
 
 };
