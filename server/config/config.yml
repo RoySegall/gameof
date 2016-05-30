@@ -1,8 +1,7 @@
-port: 28015
-host: 'localhost'
-db: gameof
-pass:
-user:
+db:
+  port: 28015
+  host: 'localhost'
+  db: gameof
 allowed_methods:
   - get
   - post

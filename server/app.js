@@ -11,13 +11,11 @@ gameOf.setModulesPath(__dirname + '/node_modules/');
 gameOf.yml.setYmlPath(__dirname + '/config/config.yml');
 
 // Set db settings.
-// todo: pass settings.
-gameOf.db.setThinky(require('thinky')([gameOf.yml.parse().db]));
+gameOf.db.setThinky(require('thinky')(gameOf.yml.parse().db));
 
 var game = gameOf.games.create({'foo': 1});
 
-game.saveAll().then(function(result) {
-});
+game.saveAll();
 
 //
 // // Set plugins information.
