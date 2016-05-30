@@ -70,7 +70,7 @@ function plugin() {
 
     patchGet: function(req, res) {
       var db = module.exports.gameOf.db;
-      var plug = module.exports.game;
+      var plug = module.exports.gameOf.plug;
       var formatter = module.exports.gameOf.formatter;
 
       if (req.params.id == undefined) {

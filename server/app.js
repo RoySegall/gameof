@@ -47,7 +47,7 @@ _.map(gameOf.plug.getPlugins(), function(item) {
       // Set the rest request type callback from the annotation.
       pluginsExpress[type](item.path, plugin[item[type]]);
 
-      // Declaring of sub routes?
+      // Declaring of sub routes.
       if (item.hasOwnProperty('subRoute')) {
         if (item.subRoute.indexOf(',') != -1) {
           // More than one single sub route.

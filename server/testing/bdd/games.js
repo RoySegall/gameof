@@ -4,11 +4,11 @@
 var vows = require('vows'),
   assert = require('assert'),
   request = require('request'),
-  accessToken = require('../modules/access_token');
+  accessToken = require('../modules/access_token'),
+  entity = require('../modules/entity');
 
 vows.describe('Getting the games')
   .addBatch({
-
     'Testing user validation': {
       topic: function() {
         request ({
@@ -109,6 +109,43 @@ vows.describe('Getting the games')
         var body = JSON.parse(topic.toJSON().body);
         assert.equal(body.title, 'dummy text');
         assert.isNotEmpty(body.uid);
+        entity.setEntityId(body.id);
+      }
+    }
+  })
+  .addBatch({
+    'Updating a game entity': {
+      topic: function() {
+        request ({
+          uri: 'http://localhost:3000/api/games/' + entity.getEntityId(),
+          method: 'patch',
+          headers: {
+            access_token: accessToken.getAccessToken()
+          },
+          form: {
+            'title': 'Updated title'
+          }
+        }, this.callback );
+      },
+      'The game entry has been updates successfully': function(topic) {
+        var body = JSON.parse(topic.toJSON().body);
+        assert.equal(body.title, "Updated title");
+      }
+    },
+    'Test bad update payload': {
+      topic: function() {
+        request ({
+          uri: 'http://localhost:3000/api/games/' + entity.getEntityId(),
+          method: 'patch',
+          headers: {
+            access_token: accessToken.getAccessToken()
+          }
+        }, this.callback );
+      },
+      'The game entry has been updates successfully': function(topic) {
+        var body = JSON.parse(topic.toJSON().body);
+        assert.equal(body.error.title, '"title" is required');
+        assert.equal(topic.statusCode, 400);
       }
     }
   })
