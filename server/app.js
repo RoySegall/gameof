@@ -17,7 +17,6 @@ var game = gameOf.games.create({'foo': 1});
 
 game.saveAll();
 
-//
 // // Set plugins information.
 // gameOf.plug.setPluginsPath(__dirname + '/modules/plugins');
 // gameOf.plug.setPlugins('express');
