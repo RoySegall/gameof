@@ -4,14 +4,9 @@
  *
  * @post refreshAccessToken
  */
-function plugin() {
+module.exports = {
 
-  return {
+  refreshAccessToken: function(req, res) {
 
-    refreshAccessToken: function(req, res) {
-
-    }
-  };
-}
-
-module.exports = plugin();
+  }
+};

@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/app.js",
   "dependencies": {
-    "annotations": "^0.1.338",
+    "annotations": "https://github.com/roysegall/annotations/tarball/3",
     "body-parser": "^1.15.1",
     "colors": "^1.1.2",
     "conga-annotations": "^0.1.8",
