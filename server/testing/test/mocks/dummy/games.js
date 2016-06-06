@@ -3,15 +3,10 @@
  * @path /api/games
  * @allowedMethods get, post, patch
  */
-function plugin() {
+module.exports = {
 
-  return {
+  restGet: function () {
+    return 'I am a dummy text';
+  }
 
-    restGet: function () {
-      return 'I am a dummy text';
-    }
-
-  };
-}
-
-module.exports = plugin();
+};
