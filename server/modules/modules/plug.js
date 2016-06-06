@@ -113,7 +113,7 @@ module.exports = {
     var plugins = _.object(_.map(fs.readdirSync(plugins_path), function(item) {
 
       // Get the annotation of the plugin.
-      var annotations_info = annotations.getSync(plugins_path + '/' + item).plugin;
+      var annotations_info = annotations.getSync(plugins_path + '/' + item).module;
 
       // Save the plugin path. Used when instantiate a plugin.
       annotations_info.plugin_path = plugins_path + '/' + item;

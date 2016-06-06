@@ -2,19 +2,14 @@
  * @id games_validation
  */
 
-var Joi = require('../../../node_modules/joi');
+module.exports = {
 
-function plugin() {
+  template: function () {
+    var Joi = require('../../../node_modules/joi');
+    
+    return Joi.object().keys({
+      title: Joi.string().required()
+    });
+  }
 
-  return {
-
-    template: function () {
-      return Joi.object().keys({
-        title: Joi.string().required()
-      });
-    }
-
-  };
-}
-
-module.exports = plugin();
+};

@@ -5,18 +5,13 @@
  * @get getQuestions
  * @post postQuestions
  */
-function plugin() {
+module.exports = {
 
-  return {
+  getQuestions: function(req, res) {
+    res.send('Get a random question');
+  },
 
-    getQuestions: function(req, res) {
-      res.send('Get a random question');
-    },
+  postQuestions: function() {
 
-    postQuestions: function() {
-
-    }
-  };
-}
-
-module.exports = plugin();
+  }
+};
