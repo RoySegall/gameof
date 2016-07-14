@@ -15,8 +15,8 @@ module.exports = {
   token: require('./modules/token'),
   formatter: require('./modules/formatter'),
 
-  // Data related modules.
-  games: {},
+  // Data related models.
+  games: require('./modules/game'),
   users: require('./modules/users'),
   question: {},
   stats: {},
