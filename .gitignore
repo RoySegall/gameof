@@ -4,3 +4,4 @@ semantic
 /.publish
 .idea
 server/rethinkdb_data
+elm-stuff

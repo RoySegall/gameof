@@ -1,0 +1,22 @@
+{
+  "name": "gameof",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/app.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-elm": "^0.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoySegall/gameof.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RoySegall/gameof/issues"
+  },
+  "homepage": "https://github.com/RoySegall/gameof#readme"
+}
